@@ -1,0 +1,8 @@
+{
+  "name": "com.jonagill.unityinternalaccess",
+  "description": "Helpers that expose access to some internal UnityEngine & UnityEditor APIs.",
+  "version": "1.0.0",
+  "unity": "2019.2",
+  "displayName": "Unity Internal Access",
+  "dependencies": { }
+}
