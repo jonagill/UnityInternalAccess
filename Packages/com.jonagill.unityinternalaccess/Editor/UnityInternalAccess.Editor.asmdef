@@ -1,5 +1,5 @@
 {
-    "name": "unityinternalaccesss.Editor",
+    "name": "UnityInternalAccess.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"

@@ -17,8 +17,6 @@ namespace UnityInternalAccess.Editor
         private static readonly MethodInfo ScriptAttributeUtility_GetFieldInfoFromProperty;
         private static readonly MethodInfo ScriptAttributeUtility_GetFieldAttributesMethod;
         private static readonly MethodInfo ScriptAttributeUtility_GetDrawerTypeForType;
-        private static readonly MethodInfo ScriptAttributeUtility_GetDrawerTypeForPropertyAndType;
-
 
         static ScriptAttributeUtilityInternal()
         {
@@ -34,8 +32,6 @@ namespace UnityInternalAccess.Editor
                 scriptAttributeUtilityType.GetMethod( "GetFieldAttributes", BindingFlags.NonPublic | BindingFlags.Static);
             ScriptAttributeUtility_GetDrawerTypeForType =
                 scriptAttributeUtilityType.GetMethod( "GetDrawerTypeForType", BindingFlags.NonPublic | BindingFlags.Static);
-            ScriptAttributeUtility_GetDrawerTypeForPropertyAndType =
-                scriptAttributeUtilityType.GetMethod( "GetDrawerTypeForPropertyAndType", BindingFlags.NonPublic | BindingFlags.Static);
         }
 
         public static FieldInfo GetFieldInfoAndStaticTypeFromProperty(SerializedProperty property, out Type type)
