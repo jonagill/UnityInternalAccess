@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace UnityInternalAccess.Editor
 {
@@ -61,6 +63,19 @@ namespace UnityInternalAccess.Editor
             else
             {
                 return EditorGUI.GetPropertyHeight(property, label);
+            }
+        }
+        
+        public static VisualElement CreatePropertyField( SerializedProperty property, string label = null )
+        {
+            var drawer = GetDefaultDrawer( property );
+            if ( drawer != null )
+            {
+                return drawer.CreatePropertyGUI( property );
+            }
+            else
+            {
+                return new PropertyField( property, label );
             }
         }
 
