@@ -84,7 +84,11 @@ namespace UnityInternalAccess.Editor
 
         public static Type GetDrawerTypeForType(Type type)
         {
-            return (Type) ScriptAttributeUtility_GetDrawerTypeForType.Invoke( null, new object[] { type } );
+            #if UNITY_2023_3_OR_NEWER
+                return (Type) ScriptAttributeUtility_GetDrawerTypeForType.Invoke( null, new object[] { type, null, false  } );            
+            #else
+                return (Type) ScriptAttributeUtility_GetDrawerTypeForType.Invoke( null, new object[] { type } );
+            #endif
         }
 
         public static Type GetDrawerTypeForPropertyAndType(SerializedProperty property, Type type)
