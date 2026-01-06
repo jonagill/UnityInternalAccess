@@ -19,6 +19,7 @@ public class SerializedPropertyTestObject : MonoBehaviour
     public TestEnum myEnum = TestEnum.A;
     public int[] myArray = { 0, 1, 2, 3 };
     public MyClass myClass;
+    public MyClass[] myClassArray = { new MyClass(), new MyClass() };
 
     [ContextMenu(nameof(TestSerializedProperties))]
     private void TestSerializedProperties()
@@ -51,14 +52,25 @@ public class SerializedPropertyTestObject : MonoBehaviour
                 Debug.Log(
                     $"{nameof(arrayProp)}[{i}] {elementProp.intValue} {elementValue} (Parent matches: {arrayProp.propertyPath == parentProp.propertyPath})");
             }
-
+            
             var classProp = serializedObject.FindProperty(nameof(myClass));
-            var nestedIntProp = classProp.FindPropertyRelative(nameof(MyClass.nestedInt));
-            classProp.TryGetValue(out MyClass classValue);
-            nestedIntProp.TryGetValue(out int nestedIntValue);
-            var nestedParentProp = nestedIntProp.GetParentProperty();
-            Debug.Log(
-                $"{nameof(classProp)} {nestedIntProp.intValue} {nestedIntValue} {classValue.nestedInt} (Parent matches: {classProp.propertyPath == nestedParentProp.propertyPath})");
+
+            static void ValidateMyClassInstance(SerializedProperty instanceProp)
+            {
+                var nestedIntProp = instanceProp.FindPropertyRelative(nameof(MyClass.nestedInt));
+                instanceProp.TryGetValue(out MyClass classValue);
+                nestedIntProp.TryGetValue(out int nestedIntValue);
+                var nestedParentProp = nestedIntProp.GetParentProperty();
+                Debug.Log(
+                    $"{instanceProp.propertyPath} {nestedIntProp.intValue} {nestedIntValue} {classValue.nestedInt} (Parent matches: {instanceProp.propertyPath == nestedParentProp.propertyPath})");                
+            }
+            
+            ValidateMyClassInstance(classProp);
+            var classArrayProp = serializedObject.FindProperty(nameof(myClassArray));
+            for (int i = 0; i < classArrayProp.arraySize; i++)
+            {
+                ValidateMyClassInstance(classArrayProp.GetArrayElementAtIndex(i));   
+            }
         }
         catch (Exception e)
         {

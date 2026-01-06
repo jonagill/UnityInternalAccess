@@ -97,7 +97,7 @@ namespace UnityInternalAccess.Editor
         /// </summary>
         private static string AddArrayTokensToPropertyPath(string propertyPath)
         {
-            return propertyPath.Replace(".Array.data[", "[");
+            return propertyPath.Replace("[", ".Array.data[");
         }
         
         /// <summary>
