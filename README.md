@@ -22,5 +22,5 @@ To install via [OpenUPM](https://openupm.com/packages/com.jonagill.autofill/):
 4. Open Window/Package Manager
 5. Click the + button
 6. Select Add package by name...
-7. Paste in `UnityInternalAccess`
-8. Click Add
+7. Enter `com.jonagill.unityinternalaccess` and click Add
+
